@@ -133,15 +133,10 @@ function makeWord(lettersObject) {
   const arrWord = [];
   Object.entries(lettersObject).forEach(([key, value]) => {
     if (value.length === 1) {
-      arrWord.splice(value[0], 0, key);
-      // console.log(arrWord);
+      arrWord[value[0]] = key;
     } else if (value.length > 1) {
       value.forEach((index) => {
-        // console.log(value);
-        // console.log(index);
-        // console.log(key);
-        arrWord.splice(index, 0, key);
-        // console.log(arrWord);
+        arrWord[index] = key;
       });
     }
   });
