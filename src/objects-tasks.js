@@ -35,8 +35,15 @@ function shallowCopy(obj) {
  */
 // const result = objects.reduce((acc, curr) => Object.assign(acc, curr), {});
 
-function mergeObjects(/* objects */) {
-  throw new Error('Not implemented');
+function mergeObjects(objects) {
+  const mergedObj = objects.reduce((acc, curr) => {
+    const obj = acc;
+    Object.entries(curr).forEach(([key, value]) => {
+      obj[key] = value + (obj[key] || 0);
+    });
+    return obj;
+  }, {});
+  return mergedObj;
 }
 
 /**
@@ -52,8 +59,13 @@ function mergeObjects(/* objects */) {
  *    removeProperties({name: 'John', age: 30, city: 'New York'}, 'age') => {name: 'John', city: 'New York'}
  *
  */
-function removeProperties(/* obj, keys */) {
-  throw new Error('Not implemented');
+function removeProperties(obj, keys) {
+  const objCopy = obj;
+  keys.forEach((key) => {
+    delete objCopy[key];
+  });
+
+  return objCopy;
 }
 
 /**
